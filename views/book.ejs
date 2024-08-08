@@ -1,0 +1,27 @@
+<!-- views/book.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title><%= book.title %></title>
+</head>
+<body>
+  <h1><%= book.title %></h1>
+  <p>Автор: <%= book.author %></p>
+  <p>Категория: <%= book.category %></p>
+  <p>Год: <%= book.year %></p>
+  <p>Цена: <%= book.price %> ₽</p>
+  <p>Статус: <%= book.status %></p>
+  <form action="/rent/<%= book.id %>" method="post">
+    <input type="text" name="user" placeholder="электронная почта" required>
+    <select name="rentPeriod">
+      <option value="2 недели">2 недели</option>
+      <option value="1 month">1 месяц</option>
+      <option value="1 месяц">3 месяца</option>
+    </select>
+    <button type="submit">Аренда</button>
+  </form>
+</body>
+</html>

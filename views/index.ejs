@@ -1,0 +1,39 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Bookstore</title>
+</head>
+<body>
+  <h1>Книжный магазин</h1>
+  <a href="/admin" class="admin-link">Админ-панель</a>
+  <form action="/sort" method="get">
+    <select name="category">
+      <option value="">Категории</option>
+      <option value="Фантастика">Фантастика</option>
+      <option value="Мистика">Мистика</option>
+      <option value="Детектив">Детектив</option>
+     
+    </select>
+    <input type="text" name="author" placeholder="Автор">
+    <input type="number" name="year" placeholder="Год">
+    <button type="submit">Искать</button>
+  </form>
+  <div>
+    <% books.forEach(book => { %>
+      <div class="book-container">
+        <h2><%= book.title %></h2>
+        <p>Автор: <%= book.author %></p>
+        <p>Категория: <%= book.category %></p>
+        <p>Год: <%= book.year %></p>
+        <p>Цена: <%= book.price %> ₽</p>
+        <p>Статус: <%= book.status %></p>
+        <a href="/book/<%= book.id %>">Подробнее</a>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>

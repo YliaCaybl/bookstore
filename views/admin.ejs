@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Админ-панель</h1>
+    
+    <!-- Добавляем кнопку для перехода на главную страницу -->
+    <a href="/" class="btn-switch-main">Перейти на главную</a>
+
+    <form action="/add" method="post">
+        <!-- Форма добавления книги -->
+        <input type="text" name="title" placeholder="Название" required>
+        <input type="text" name="author" placeholder="Автор" required>
+        <input type="text" name="category" placeholder="Категория" required>
+        <input type="number" name="year" placeholder="Год" required>
+        <input type="number" name="price" placeholder="Цена" required>
+        <select name="status">
+            <option value="available">в наличии</option>
+            <option value="unavailable">скоро будет</option>
+        </select>
+        <button type="submit">Добавить книгу</button>
+    </form>
+
+    <div>
+        <% books.forEach(book => { %>
+            <div class="book-container">
+                <h2><%= book.title %></h2>
+                <p>Автор: <%= book.author %></p>
+                <p>Категория: <%= book.category %></p>
+                <p>Год: <%= book.year %></p>
+                <p>Цена: <%= book.price %> ₽</p>
+                <p>Статус: <%= book.status %></p>
+                <form action="/update/<%= book.id %>" method="post">
+                    <input type="text" name="title" value="<%= book.title %>">
+                    <input type="text" name="author" value="<%= book.author %>">
+                    <input type="text" name="category" value="<%= book.category %>">
+                    <input type="number" name="year" value="<%= book.year %>">
+                    <input type="number" name="price" value="<%= book.price %>">
+                    <select name="status">
+                        <option value="available" <%= book.status === 'available' ? 'selected' : '' %>>в наличии</option>
+                        <option value="unavailable" <%= book.status === 'unavailable' ? 'selected' : '' %>>скоро будет</option>
+                    </select>
+                    <button type="submit">Обновить</button>
+                </form>
+                <form action="/delete/<%= book.id %>" method="post">
+                    <button type="submit">Удалить</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

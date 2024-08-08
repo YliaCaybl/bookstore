@@ -1,0 +1,26 @@
+<!-- views/sort.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Sorted Books</title>
+</head>
+<body>
+  <h1>Итог поиска</h1>
+  <div>
+    <% books.forEach(book => { %>
+      <div class="book-container">
+        <h2><%= book.title %></h2>
+        <p>Автор: <%= book.author %></p>
+        <p>Категория: <%= book.category %></p>
+        <p>Год: <%= book.year %></p>
+        <p>Цена: <%= book.price %> ₽</p>
+        <p>Статус: <%= book.status %></p>
+        <a href="/book/<%= book.id %>">Подробнее</a>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
