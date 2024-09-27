@@ -8,3 +8,6 @@ db.serialize(() => {
 });
 
 module.exports = db;
+
+
+а тут я напишу что-то понятное 
